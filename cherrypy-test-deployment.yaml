@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: cherrypy-test
+  name: cherrypy-test
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cherrypy-test
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: cherrypy-test
+    spec:
+      containers:
+      - image: vbodocker/cherrypy-test
+        name: cherrypy-test
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: cherrypy-test
+  name: cherrypy-test
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: cherrypy-test
+  type: NodePort
+status:
+  loadBalancer: {}
