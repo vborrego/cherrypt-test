@@ -9,7 +9,7 @@ class RootUrl:
     f=open('/mnt/data/filex.log','a')
     f.write('%s %f\n'%( socket.gethostname(),  time.time()))
     f.close()
-    return "Hello world ola mundo"
+    return "Hello world ola mundo %s"%( socket.gethostname()  )
 
 class Middle:
   @cherrypy.expose
