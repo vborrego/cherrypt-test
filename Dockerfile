@@ -1,11 +1,8 @@
-FROM ubuntu:latest
-RUN apt update
-RUN apt install -y nano vim python curl
-RUN curl https://bootstrap.pypa.io/pip/2.7/get-pip.py > get-pip.py
-RUN python get-pip.py
+FROM alpine:3.16
+RUN apk add --update --no-cache python3 py3-pip
 RUN pip install cherrypy routes --user
 RUN mkdir /app
 RUN mkdir /mnt/data
 COPY . /app/
 WORKDIR /app
-CMD ["python","main.py"]
+CMD ["python3","main.py"]
